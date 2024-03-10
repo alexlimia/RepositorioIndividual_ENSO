@@ -1,0 +1,1 @@
+Los ultimos commit son porque no me aparecñia la carpeta Proyectos/Prj1 al estar vacia y cree un archivo vacío en ella para que apareciese. Lo comandos seguidos para la realización de la p´ractica son los de historia.txt; el resto de commmits y así son correcciones de errores
