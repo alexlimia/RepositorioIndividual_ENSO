@@ -1,0 +1,134 @@
+##la parte de conectar el repositorio local con el remoto de github lo he hecho después del punto 1)2) a través de la GitHub Desktop y el repositorio remoto se llama RepositorioIndividual_ENSO.
+1)2)
+##creamos las carpetas y subcarpetas
+ mkdir RaizRepositorio
+ cd RaizRepositorio/
+ git init
+ touch historia.txt
+ mkdir Proyectos
+ mkdir Procesos
+ cd Proyectos/
+ mkdir Prj1
+ cd ..
+ cd Procesos/
+ mkdir ControlDeCambios
+ cd ..
+##movemos los archivos v1 y las plantillas
+ mv ../DP_ControldeCambios_Grupo4-v1.docx Procesos/ControlDeCambios/DP_ControldeCambios_Grupo4.docx
+ cp -r ../ProcesoDeCambios/Documentacion_Cambios/ Procesos/ControlDeCambios/
+ cp -r ../ProcesoDeCambios/Evaluacion_Propuestas/ Procesos/ControlDeCambios/
+ cp -r ../ProcesoDeCambios/Mensajes/ Procesos/ControlDeCambios/
+ cp -r ../ProcesoDeCambios/Posibles_Cambios/ Procesos/ControlDeCambios/
+ cp -r ../ProcesoDeCambios/'Propuestas en curso'/ Procesos/ControlDeCambios/
+ cp -r ../ProcesoDeCambios/'Propuestas finalizadas'/ Procesos/ControlDeCambios/
+ cp -r ../ProcesoDeCambios/Resolucion_Propuestas/ Procesos/ControlDeCambios/
+
+3)
+ git add . ##desde la raíz, añadimos todos los cambios para el commit
+ git commit -m "Versión inicial repositorio y carga de ficheros. Puntos 1 y 2."
+
+4)
+##etiquetamos como R1
+ git tag -a R1 -m "Versión R1"
+
+5)
+##comprobamos si estamos en la rama master
+ git checkout master
+##creamos la rama Mejoras
+ git checkout -b Mejoras
+##una vez en mejoras, copiamos el pdf con las propuestas al repositorio
+ cp ../Propuestas_de_mejora.pdf Procesos/ControlDeCambios/
+
+6)
+##movemos el fichero de la v2 al fichero de control de Cambios del repositorio (lo sustituye)
+ mv ../DP_ControldeCambios_Grupo4-v2.docx Procesos/ControlDeCambios/DP_ControldeCambios_Grupo4.docx
+##guardamos cambios para el commit y lo hacemos
+ git add .
+ git commit -m "Archivo v1 reemplazado por v2"
+
+7)
+##comprobamos q estamos en master
+ git checkout master
+##unimos la rama principal con Mejoras
+ git merge Mejoras
+##eliminamos la rama "Mejoras"
+ git branch -d Mejoras
+
+8)
+#Borramos el pdf de propuestas de mejora
+ rm Procesos/ControlDeCambios/Propuestas_de_mejora.pdf
+
+9)
+##guardamos cambios para el comit y lo hacemos
+ git add .
+ git commit -m "Elimiando archivo PDF con propuestas de mejora"
+##etiquetamos como r2
+ git tag -a R2 -m "Versión R2"
+
+10)
+##sustituimos fichero v3 por el del repositorio
+ mv ../DP_ControldeCambios_Grupo4-v3.docx Procesos/ControlDeCambios/DP_ControldeCambios_Grupo4.docx
+##actualizamos repositorio local 
+ git add .
+ git commit -m "Archivo v2 reemplazado por archivo v3"
+
+11)
+##comprobamos q estamos en master
+ git checkout master
+##miramos en el log el hash del commit y lo copiamos 
+ git log
+##volvemos al estado anterior al commit con el hash 
+ git reset --hard 281f04350821f5e52549234373e6dcb2f0d999d4
+##movemos los ficheros de la misma manera que siempre
+ mv ../DP_ControldeCambios_Grupo4-v3.docx Procesos/ControlDeCambios/DP_ControldeCambios_Grupo4.docx
+##actualizamos el repostorio local 
+ git add .
+ git commit -m "Versión 3 actualizada"
+##etiquetamos como R3
+ git tag -a R3 -m "Versión R3"
+
+12)
+##hacemos el push, actualizando el repositorio remoto
+##push del master
+ git push origin master
+##push de los tags  
+ git push origin --tags
+
+13)
+##comprobamos que la rama principal se actualice
+ git pull origin master
+ 
+14)
+##introducimos el comando en este fichero
+ echo "git pull origin master" > historia.txt
+##miramos las diferencias entre local y remoto
+ git diff origin/master -- historia.txt
+     salida-> diff --git a/historia.txt b/historia.txt
+	      index e69de29..7747e0f 100644
+	      --- a/historia.txt
+	      +++ b/historia.txt
+	      @@ -0,0 +1 @@
+
+
+15)
+##ctualizamos el repositorio con todos los cambios, hacemos el commit y el push en el repositorio remoto
+ git add .
+ git commit -m "Practica realizada"
+ git push origin master
+
+
+
+
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+git pull origin master
